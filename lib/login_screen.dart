@@ -1,66 +1,93 @@
 import 'package:flutter/material.dart';
+import 'package:trace_app/home_page.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final textController = TextEditingController();
-  final passwordController = TextEditingController();
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(40),
+        padding: const EdgeInsets.all(60),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Login',
+            const Text(
+              "Login",
               style: TextStyle(
-                color: Colors.red,
-                fontSize: 25,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
+                color: Colors.red,
               ),
             ),
-            SizedBox(height: 15),
-            Container(
-              color: Colors.transparent,
-              height: 280,
-              width: 450,
-              child: Column(
-                children: [
-                  TextField(
-                    controller: textController,
-                    decoration: InputDecoration(
-                      labelText: 'Username',
-                      labelStyle: TextStyle(fontSize: 25),
-                      hintText: 'e.g. Issabelle Kabore',
-                      hintStyle: TextStyle(fontSize: 25),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+            const SizedBox(height: 50),
+
+            const TextField(
+              decoration: InputDecoration(
+                labelText: "Username",
+                hintText: 'e.g Isabelle Kabore',
+                labelStyle: TextStyle(fontSize: 20),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 40),
+
+            const TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: "Password",
+                hintText: '******',
+                labelStyle: TextStyle(fontSize: 20),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 40),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(height: 1, width: 150, color: Colors.grey),
+                const Text(' Or ', style: TextStyle(fontSize: 20)),
+
+                Container(height: 1, width: 150, color: Colors.grey),
+              ],
+            ),
+
+            const SizedBox(height: 40),
+
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(
+                    const Color.fromARGB(255, 4, 17, 27),
+                  ),
+                  shape: WidgetStatePropertyAll(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
                     ),
                   ),
-                  SizedBox(height: 60),
-                  TextField(
-                    controller: passwordController,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      labelStyle: TextStyle(fontSize: 25),
-                      hintText: 'Enter your password',
-                      hintStyle: TextStyle(fontSize: 25),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const HomePage()),
+                  );
+                },
+                child: const Text(
+                  "Login with Government ID",
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 15),
+            const Center(
+              child: Text(
+                "Forgot Password?",
+                style: TextStyle(color: Colors.grey, fontSize: 25),
               ),
             ),
           ],

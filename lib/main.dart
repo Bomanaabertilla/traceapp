@@ -7,8 +7,14 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Trace App', home: LoginScreen());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Trace App',
+      theme: ThemeData(primarySwatch: Colors.red),
+      home: const LoginPage(),
+    );
   }
 }
