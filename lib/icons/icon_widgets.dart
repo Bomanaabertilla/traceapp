@@ -28,26 +28,32 @@ class IconWidget extends StatelessWidget {
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Column(
+          child: Row(
             children: [
-              Icon(Icons.chevron_right_outlined),
-              IconButton(
-                onPressed: () {},
-                icon: icon != null ? Icon(icon) : SizedBox(),
+              Column(
+                children: [
+                  Icon(Icons.chevron_right_outlined),
+                  IconButton(
+                    onPressed: () {},
+                    icon: icon != null ? Icon(icon) : SizedBox(),
+                  ),
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  Text(subtitle, style: TextStyle(color: Color(0xff888888))),
+                  icon != null ? Icon(icon) : SizedBox(width: 24, height: 24),
+                  image != null
+                      ? Image.asset(image!)
+                      : SizedBox(width: 24, height: 24),
+                ],
               ),
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-              Text(subtitle, style: TextStyle(color: Color(0xff888888))),
-              icon != null ? Icon(icon) : SizedBox(width: 24, height: 24),
-              image != null
-                  ? Image.asset(image!)
-                  : SizedBox(width: 24, height: 24),
             ],
           ),
         ),
