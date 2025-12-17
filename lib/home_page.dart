@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trace_app/icons/icon_widgets.dart';
 import 'package:trace_app/register_new_entity.dart';
 import 'package:trace_app/login_screen.dart';
 
@@ -25,16 +26,21 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){}, icon: Icon(Icons.menu)),
+        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
         centerTitle: true,
         title: const Text("Dashboard"),
         actions: [
-          IconButton(onPressed: (){
-            Navigator.push(
+          IconButton(
+            onPressed: () {
+              Navigator.push(
                 context,
-                MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
+                MaterialPageRoute(
+                  builder: (BuildContext context) => LoginPage(),
+                ),
               );
-          }, icon: Icon(Icons.account_circle),),
+            },
+            icon: Icon(Icons.account_circle),
+          ),
         ],
       ),
       body: Padding(
@@ -52,33 +58,40 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 35),
 
-            menuItem(context, Icons.add_box, "Register new entity", () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => RegisterEntityPage()),
-              );
-            }),
-            const SizedBox(height: 35),
-            menuItem(context, Icons.local_shipping, "Record shipment", () {
-               Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => RegisterEntityPage()),
-              );
-            }),
-            const SizedBox(height: 35),
-            menuItem(context, Icons.verified, "In-transit verification", () {
-               Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => RegisterEntityPage()),
-              );
-            }),
-            const SizedBox(height: 35),
-            menuItem(
-              context,
-              Icons.inventory,
-              "Destination verification",
-              () {},
+            IconWidget(
+              title: 'title',
+              subtitle: 'subtitle',
+              icon: Icons.add_box,
+              onClick: () {},
             ),
+
+            // menuItem(context, Icons.add_box, "Register new entity", () {
+            //   Navigator.push(
+            //     context,
+            //     MaterialPageRoute(builder: (_) => RegisterEntityPage()),
+            //   );
+            // }),
+            // const SizedBox(height: 35),
+            // menuItem(context, Icons.local_shipping, "Record shipment", () {
+            //    Navigator.push(
+            //     context,
+            //     MaterialPageRoute(builder: (_) => RegisterEntityPage()),
+            //   );
+            // }),
+            // const SizedBox(height: 35),
+            // menuItem(context, Icons.verified, "In-transit verification", () {
+            //    Navigator.push(
+            //     context,
+            //     MaterialPageRoute(builder: (_) => RegisterEntityPage()),
+            //   );
+            // }),
+            // const SizedBox(height: 35),
+            // menuItem(
+            //   context,
+            //   Icons.inventory,
+            //   "Destination verification",
+            //   () {},
+            // ),
           ],
         ),
       ),
