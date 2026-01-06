@@ -7,24 +7,61 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:trace_app/main.dart';
+import 'package:trace_app/home/view/home_screen.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  group('HomeScreen counter tests', () {
+    testWidgets('Counter starts at 0 and increments to 1', (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(home: const HomeScreen()));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+      expect(find.text('0'), findsOneWidget);
+      expect(find.text('1'), findsNothing);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+      await tester.tap(find.byIcon(Icons.add));
+      await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+      expect(find.text('1'), findsOneWidget);
+      expect(find.text('0'), findsNothing);
+    });
+
+    testWidgets('Multiple increments update counter', (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(home: const HomeScreen()));
+
+      expect(find.text('0'), findsOneWidget);
+
+      await tester.tap(find.byIcon(Icons.add));
+      await tester.pump();
+      await tester.tap(find.byIcon(Icons.add));
+      await tester.pump();
+
+      expect(find.text('2'), findsOneWidget);
+    });
+
+    testWidgets('FloatingActionButton is present and tappable', (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(home: const HomeScreen()));
+
+      final fab = find.byType(FloatingActionButton);
+      expect(fab, findsOneWidget);
+
+      await tester.tap(fab);
+      await tester.pump();
+
+      expect(find.text('1'), findsOneWidget);
+    });
+
+    testWidgets('Tapping non-add widgets does not change counter', (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(home: const HomeScreen()));
+
+      expect(find.text('0'), findsOneWidget);
+
+      // Try tapping the title or other widgets (if present)
+      final title = find.text('Trace App'); // harmless if not found
+      if (await tester.any(title)) {
+        await tester.tap(title);
+        await tester.pump();
+      }
+
+      expect(find.text('0'), findsOneWidget);
+    });
   });
 }

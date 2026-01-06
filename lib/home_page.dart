@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:trace_app/icons/icon_widgets.dart';
-import 'package:trace_app/register_new_entity.dart';
 import 'package:trace_app/login_screen.dart';
 
 class HomePage extends StatelessWidget {
